@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Feedback </title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: skyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.card {
+  width: 340px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+h2 { margin-bottom: 20px; }
+select, textarea {
+  width: 80%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+select:focus, textarea:focus { border-color: #2563eb; outline: none; }
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover { background: #1e4ed8; }
+.error { color: red; font-size: 14px; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Course Feedback</h2>
+
+  <select id="content">
+    <option value="">Content Quality</option>
+    <option>Excellent</option>
+    <option>Good</option>
+    <option>Average</option>
+    <option>Poor</option>
+  </select>
+
+  <select id="trainer">
+    <option value="">Trainer Support</option>
+    <option>Excellent</option>
+    <option>Good</option>
+    <option>Average</option>
+    <option>Poor</option>
+  </select>
+
+  <select id="overall">
+    <option value="">Overall Experience</option>
+    <option>Excellent</option>
+    <option>Good</option>
+    <option>Average</option>
+    <option>Poor</option>
+  </select>
+
+  <textarea id="comment" rows="3" placeholder="Additional comments"></textarea>
+
+  <button onclick="submitFeedback()">Submit Feedback</button>
+  <div id="err" class="error"></div>
+</div>
+
+<script>
+function submitFeedback(){
+  const content = document.getElementById("content").value;
+  const trainer = document.getElementById("trainer").value;
+  const overall = document.getElementById("overall").value;
+
+  if(!content || !trainer || !overall){
+    document.getElementById("err").innerText = "Please rate all fields!";
+    return;
+  }
+
+  
+  const feedback = {
+    content, trainer, overall,
+    comment: document.getElementById("comment").value
+  };
+  console.log("Feedback submitted:", feedback);
+
+  
+  window.location.href = "certificate.html";
+}
+</script>
+
+</body>
+</html>

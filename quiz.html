@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz | E-Learning</title>
+<style>
+body{margin:0;font-family:"Segoe UI",Arial;background:skyblue;}
+.container{padding:40px;max-width:700px;margin:auto;}
+.card{background:white;padding:25px;border-radius:10px;border:1px solid #e6ecf5;}
+.btn{margin-top:20px;padding:8px 16px;border:none;border-radius:6px;background:#2563eb;color:white;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2 id="quizTitle"></h2>
+  <div class="card" id="quizBox"></div>
+  <button class="btn" onclick="submitQuiz()">Submit</button>
+</div>
+
+<script>
+const course = localStorage.getItem("courseName"); 
+
+const quizzes = {
+
+"Java Programming":[
+{q:"Java is ?", a:"Programming Language", b:"Database"},
+{q:"JVM stands for ?", a:"Java Virtual Machine", b:"Java Variable Method"},
+{q:"Java supports OOP ?", a:"Yes", b:"No"},
+{q:"Class contains ?", a:"Objects", b:"Tables"},
+{q:"Java used for ?", a:"Applications", b:"Styling"}
+],
+
+"Web Development":[
+{q:"HTML is for ?", a:"Structure", b:"Database"},
+{q:"CSS is for ?", a:"Styling", b:"Logic"},
+{q:"JS adds ?", a:"Interactivity", b:"Storage"},
+{q:"Website runs in ?", a:"Browser", b:"CPU"},
+{q:"Frontend is ?", a:"UI", b:"Server"}
+],
+
+"Python":[
+{q:"Python is ?", a:"Programming Language", b:"Database"},
+{q:"Python used in ?", a:"AI & Web", b:"Styling"},
+{q:"Syntax is ?", a:"Simple", b:"Complex"},
+{q:"Python type ?", a:"Interpreted", b:"Markup"},
+{q:"Python supports ?", a:"OOP", b:"None"}
+],
+
+"Database SQL":[
+{q:"SQL is ?", a:"Query Language", b:"Markup"},
+{q:"Table has ?", a:"Rows & Columns", b:"Tags"},
+{q:"SELECT does ?", a:"Fetch Data", b:"Delete"},
+{q:"DB stores ?", a:"Data", b:"Images"},
+{q:"Row means ?", a:"Record", b:"Column"}
+],
+
+"DevOps":[
+{q:"DevOps means ?", a:"Dev + Ops", b:"UI + DB"},
+{q:"CI/CD is ?", a:"Automation", b:"Manual"},
+{q:"Docker is ?", a:"Container", b:"IDE"},
+{q:"Git is ?", a:"Version Control", b:"Database"},
+{q:"Goal of DevOps ?", a:"Fast Delivery", b:"Slow"}
+],
+
+"Cloud Computing":[
+{q:"Cloud provides ?", a:"Servers", b:"Keyboard"},
+{q:"AWS is ?", a:"Cloud Platform", b:"Language"},
+{q:"Internet needed ?", a:"Yes", b:"No"},
+{q:"Cloud storage ?", a:"Online", b:"Local"},
+{q:"Benefit ?", a:"Scalable", b:"Fixed"}
+]
+
+};
+
+
+document.getElementById("quizTitle").innerText = (course || "Course")+" Quiz";
+
+let html="";
+quizzes[course].forEach((item,i)=>{
+  html += `
+  <p>${i+1}. ${item.q}</p>
+  <label><input type="radio" name="q${i}" value="a"> ${item.a}</label><br>
+  <label><input type="radio" name="q${i}" value="b"> ${item.b}</label><br><br>
+  `;
+});
+document.getElementById("quizBox").innerHTML = html;
+
+
+function submitQuiz(){
+  const total = quizzes[course].length;
+  for(let i=0;i<total;i++){
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if(!selected){
+      alert("Please answer all questions before submitting.");
+      return;
+    }
+  }
+  alert("Quiz Submitted Successfully!");
+  window.location.href = "feedback.html"; 
+}
+</script>
+
+</body>
+</html>

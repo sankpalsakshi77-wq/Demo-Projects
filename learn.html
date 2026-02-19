@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Learn</title>
+<style>
+body
+{margin:0;
+  font-family:"Segoe UI",Arial;
+  background:skyblue;
+}
+.navbar
+{
+  background:white;
+  padding:14px 30px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  display:flex;
+  justify-content:space-between;
+}
+.logo
+{
+  font-weight:700;
+  color:#2563eb;
+}
+.container
+{
+  padding:40px;
+  max-width:900px;
+  margin:auto;
+}
+.video
+{background:white;
+  padding:20px;
+  border-radius:10px;
+  border:1px solid #e6ecf5;
+}
+.btn
+{margin-top:20px;
+padding:8px 16px;
+border:none;
+border-radius:6px;
+background:#2563eb;
+color:white;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar"><div class="logo">E-Learning</div><div>Learner</div></div>
+
+<div class="container">
+  <h2 id="title"></h2>
+  <div class="video" id="content"></div>
+  <button class="btn" onclick="next()">Take Quiz</button>
+</div>
+
+<script>
+const course = localStorage.getItem("courseName");
+
+const notes = {
+  "Java Programming": `<ul>
+<li>Java is object-oriented programming language.</li>
+<li>Supports inheritance, polymorphism, encapsulation, abstraction.</li>
+<li>Uses classes, objects, interfaces, and methods.</li>
+<li>Runs on JVM and platform-independent.</li>
+<li>Used for backend, Android apps, and enterprise applications.</li>
+<li>Strong typing with automatic memory management.</li>
+</ul>`,
+
+  "Web Development": `<ul>
+<li>HTML structures the web pages using tags.</li>
+<li>CSS styles the pages with colors, layouts, and responsiveness.</li>
+<li>JavaScript makes pages dynamic and interactive.</li>
+<li>DOM manipulation and event handling.</li>
+<li>Frameworks: React, Angular, Vue.</li>
+<li>Frontend, backend, full-stack concepts.</li>
+</ul>`,
+
+  "Python": `<ul>
+<li>High-level, readable syntax.</li>
+<li>Supports procedural, OOP, functional programming.</li>
+<li>Used in AI, ML, web apps, automation.</li>
+<li>Large standard library and third-party modules.</li>
+<li>Django, Flask frameworks.</li>
+<li>Beginner-friendly and versatile.</li>
+</ul>`,
+
+  "Database SQL": `<ul>
+<li>SQL is Structured Query Language.</li>
+<li>Used for creating and managing relational databases.</li>
+<li>Tables with rows and columns.</li>
+<li>Commands: SELECT, INSERT, UPDATE, DELETE, JOIN.</li>
+<li>Aggregation: SUM, COUNT, AVG.</li>
+<li>Used in backend, reporting, and analytics.</li>
+</ul>`,
+
+  "DevOps": `<ul>
+<li>Combines development and operations.</li>
+<li>Automation of CI/CD pipelines.</li>
+<li>Tools: Git, Jenkins, Docker, Kubernetes, Ansible.</li>
+<li>Collaboration between dev & ops teams.</li>
+<li>Monitoring and deployment practices.</li>
+<li>Infrastructure as Code (IaC).</li>
+</ul>`,
+
+  "Cloud Computing": `<ul>
+<li>Cloud provides servers, storage, applications on-demand.</li>
+<li>Services: IaaS, PaaS, SaaS.</li>
+<li>Providers: AWS, Azure, Google Cloud.</li>
+<li>Scalability and cost-saving.</li>
+<li>Supports backup, disaster recovery, distributed systems.</li>
+<li>Used for hosting, big data, AI, enterprise apps.</li>
+</ul>`
+};
+
+document.getElementById("title").innerText = course;
+document.getElementById("content").innerHTML = notes[course] || "Course content not found.";
+
+function next(){ window.location.href="quiz.html"; }
+</script>
+
+</body>
+</html>

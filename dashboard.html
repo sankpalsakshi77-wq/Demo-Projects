@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<style>
+body
+{margin:0;
+  font-family:"Segoe UI",Arial;
+  background:skyblue;
+}
+.navbar
+{background:white;
+  padding:14px 40px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo
+{font-weight:700;
+  color:#2563eb;
+  font-size:20px;
+}
+.user
+{color:#6b7280;
+  font-size:14px;
+}
+.container
+{padding:40px;
+  max-width:1100px;
+  margin:auto;
+}
+.title
+{font-size:24px;
+  color:#1f2937;
+  margin-bottom:30px;
+  font-weight:600;
+}
+.grid
+{display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+.course
+{background:white;
+  border-radius:12px;
+  padding:24px;
+  border:1px solid #e6ecf5;
+  box-shadow:0 6px 16px rgba(0,0,0,0.05);
+  transition:0.2s;
+}
+.course:hover
+{transform:translateY(-4px);
+  box-shadow:0 10px 22px rgba(0,0,0,0.08);
+}
+.icon
+{font-size:26px;
+  margin-bottom:10px;
+}
+.course h3
+{margin:0 0 10px 0;
+  color:#1f2937;
+}
+.course p
+{margin:0;
+  color:#6b7280;
+  font-size:14px;
+  line-height:1.5;
+}
+.btn
+{
+  margin-top:18px;
+  padding:9px 16px;
+  border:none;
+  border-radius:6px;
+  background:#2563eb;
+  color:white;
+  font-size:13px;
+  cursor:pointer;
+}
+.btn:hover{background:#1e4ed8;}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">E-Learning</div>
+  <div class="user">Welcome <span id="userName"></span></div>
+</div>
+
+<div class="container">
+  <div class="title">Explore Courses</div>
+  <div class="grid">
+    <div class="course"><div class="icon">☕</div><h3>Java Programming</h3><p>Core Java and OOP concepts.</p><button class="btn" onclick="selectCourse('Java Programming')">Start Course</button></div>
+    <div class="course"><div class="icon">🌐</div><h3>Web Development</h3><p>HTML, CSS and JavaScript basics.</p><button class="btn" onclick="selectCourse('Web Development')">Start Course</button></div>
+    <div class="course"><div class="icon">🐍</div><h3>Python</h3><p>Python programming basics.</p><button class="btn" onclick="selectCourse('Python')">Start Course</button></div>
+    <div class="course"><div class="icon">🗄️</div><h3>Database SQL</h3><p>SQL and database concepts.</p><button class="btn" onclick="selectCourse('Database SQL')">Start Course</button></div>
+    <div class="course"><div class="icon">⚙️</div><h3>DevOps</h3><p>DevOps tools and workflow.</p><button class="btn" onclick="selectCourse('DevOps')">Start Course</button></div>
+    <div class="course"><div class="icon">☁️</div><h3>Cloud Computing</h3><p>Cloud services and basics.</p><button class="btn" onclick="selectCourse('Cloud Computing')">Start Course</button></div>
+  </div>
+</div>
+
+<script>
+document.getElementById("userName").innerText = localStorage.getItem("username") || "Learner";
+
+function selectCourse(course){
+  localStorage.setItem("courseName", course); 
+  window.location.href = "learn.html"; 
+}
+</script>
+
+</body>
+</html>

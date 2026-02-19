@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup </title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: skyblue; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+input {
+  width: 80%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+button:hover { background: #1e4ed8; }
+a { color: #2563eb; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Signup</h2>
+  <input id="name" placeholder="Full Name"><br>
+  <input id="email" placeholder="Email"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+  <button onclick="signup()">Sign Up</button>
+  <p>Already registered? <a href="login.html">Login</a></p>
+</div>
+
+<script>
+async function signup() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if(!name || !email || !password){
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({name, email, password})
+    });
+    const data = await res.json();
+    if(data.success){
+      alert("Signup successful ✅");
+      window.location.href = "login.html";
+    } else {
+      alert(data.message || "Signup failed");
+    }
+  } catch(err){
+    alert("Network error: " + err.message);
+  }
+}
+</script>
+
+</body>
+</html>
